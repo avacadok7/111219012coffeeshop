@@ -3,6 +3,7 @@ import NavBar from '../components/Navbar';
 import { useParams } from 'react-router-dom';
 import coffeeShopImg from '../assets/images/cafe1.png'; // Adjust path if needed
 import { FaStar } from 'react-icons/fa';
+import Footer from '../components/Footer';
 
 const reviewCategories = ['Study', 'Talk', 'Meals', 'Coffee', 'Dessert', 'Animals'];
 
@@ -153,7 +154,7 @@ const CoffeeShopDetails = () => {
   </div>
 )}
 
-
+      <Footer />
     </>
   );
 };

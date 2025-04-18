@@ -3,6 +3,7 @@ import NavBar from '../components/Navbar'
 import Recommend from '../components/Recommend'
 import Favorites from '../components/Favorites'
 import Categories from '../components/Categories'
+import Footer from '../components/Footer';
 
 function Home() {
   
@@ -13,6 +14,7 @@ function Home() {
           <Recommend/>
           <Favorites/>
           <Categories/>
+          <Footer/>
   
       </>
     )

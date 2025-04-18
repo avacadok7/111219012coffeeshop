@@ -5,7 +5,7 @@ import banner from '../assets/images/category-banner.png';
 import Favorites from '../components/Favorites';
 import Recommend from '../components/Recommend';
 import Categories from '../components/Categories';
-
+import Footer from '../components/Footer';
 
 function CategoryDetail() {
   const { id } = useParams();
@@ -28,6 +28,7 @@ function CategoryDetail() {
    <Favorites/>
    <Recommend/>
    <Categories/>
+    <Footer/>
    </>
   );
 }
