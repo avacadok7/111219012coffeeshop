@@ -1,0 +1,9 @@
+[
+    { "name": "Study", "image": "cat1", "alt": "Category 1" },
+    { "name": "Talk", "image": "cat2", "alt": "Category 2" },
+    { "name": "Meals", "image": "cat3", "alt": "Category 3" },
+    { "name": "Dessert", "image": "cat4", "alt": "Category 4" },
+    { "name": "Coffee", "image": "cat5", "alt": "Category 5" },
+    { "name": "Animals", "image": "cat6", "alt": "Category 6" }
+  ]
+  
