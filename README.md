@@ -1,12 +1,22 @@
-# React + Vite
+# Coffee Man
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based web application for exploring coffee shops, categories, and recommendations.
 
-Currently, two official plugins are available:
+## Features
+- **Home Page**: Displays recommended coffee shops, favorites, and categories.
+- **Favorites**: A list of favorite coffee shops with dynamic navigation.
+- **Categories**: Explore coffee shop categories like Study, Talk, Meals, etc.
+- **Coffee Shop Details**: View detailed information about a specific coffee shop.
+- **Responsive Design**: Fully responsive layout using Tailwind CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- **Frontend**: React, React Router
+- **Styling**: Tailwind CSS
+- **Build Tool**: Vite
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/coffee-man.git
+   cd coffee-man
