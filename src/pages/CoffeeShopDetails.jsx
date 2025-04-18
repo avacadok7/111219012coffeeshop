@@ -46,7 +46,7 @@ const CoffeeShopDetails = () => {
           窄门咖啡        台南 ｜中西 
           </h1>
           <p className="text-gray-700 text-lg font-[jaro]">
-          LOCATION: 台北市中山區雙城街47-1號
+          LOCATION: 台北市中山區雙城街47-1號<br />
           OPENING HOURS: 10:00 - 18:00 (Closed on Mondays)
 
           </p>
