@@ -58,6 +58,7 @@ const NavBar = () => {
           <li className="p-4 hover:bg-gray-100 cursor-pointer">Categories</li>
           <li className="p-4 hover:bg-gray-100 cursor-pointer">Scroll</li>
           <li className="p-4 hover:bg-gray-100 cursor-pointer">Location</li>
+          <li className="p-4 hover:bg-gray-100 cursor-pointer">My Reviews</li>
         </ul>
          {/* Login Button inside menu */}
          <div className="px-4 mt-6">
