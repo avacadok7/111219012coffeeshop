@@ -1,23 +1,68 @@
 [
     {
+      "id": 1,
       "image": "cafe1",
       "alt": "Cafe 1",
-      "name": "硫磺   台北 ｜東區 "
+      "name": "硫磺   台北 ｜東區 ",
+      "lat": 23.0111,
+      "lng": 120.2001
     },
     {
+      "id": 2,
       "image": "cafe2",
       "alt": "Cafe 2",
-      "name": "ハハ珈琲店    台北 ｜中山 "
+      "name": "ハハ珈琲店    台北 ｜中山 ",
+      "lat": 23.0111,
+      "lng": 120.3201
     },
     {
+      "id": 3,
       "image": "cafe3",
       "alt": "Cafe 3",
-      "name": "CONGRATS CAFE  台北 ｜信義"
+      "name": "CONGRATS CAFE  台北 ｜信義",
+      "lat": 23.2211,
+      "lng": 121.2201
     },
     {
+      "id": 4,
       "image": "cafe4",
       "alt": "Cafe 4",
-      "name": "珘墨咖啡        台中 ｜北區"
-    }
+      "name": "珘墨咖啡        台中 ｜北區",
+      "lat": 24.1500,
+      "lng": 120.6500
+    },
+     {
+    "id": 5,
+    "image": "cafe5",
+    "alt": "Cafe 5",
+    "name": "窄门咖啡 台南 ｜中西",
+    "lat": 23.0001,
+    "lng": 120.2001
+  },
+  {
+    "id": 6,
+    "image": "cafe6",
+    "alt": "Cafe 6",
+    "name": "上樓看看 台北 ｜信義",
+    "lat": 25.0330,
+    "lng": 121.5654
+  },
+  {
+    "id": 7,
+    "image": "cafe7",
+    "alt": "Cafe 7",
+    "name": "咖啡•梅 台北 ｜中正",
+    "lat": 25.0423,
+    "lng": 121.5190
+  },
+  {
+    "id": 8,
+    "image": "cafe8",
+    "alt": "Cafe 8",
+    "name": "隅咖啡 台北 ｜中正",
+    "lat": 25.0418,
+    "lng": 121.5169
+  }
   ]
+
   
