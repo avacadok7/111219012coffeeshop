@@ -4,11 +4,13 @@ import NavBar from './components/Navbar';
 import Home from './pages/Home'
 import CategoryDetail from './pages/CategoryDetail';
 import CoffeeShopDetails from './pages/CoffeeShopDetails';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <>
       <NavBar/>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/:id" element={<CategoryDetail />} />

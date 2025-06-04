@@ -15,11 +15,11 @@ function Recommend() {
   };
 
   return (
-    <div className='w-full bg-[#A88A6F] py-13 px-4'>
+    <div className=' w-full  bg-[#A88A6F] px-4'>
       <div className='max-w-[1240px] mx-auto'>
   
         {/* Recommend Title */}
-        <div className='flex justify-center w-full mb-8'>
+        <div className=' flex justify-center w-full mb-8'>
           <div className='bg-[#714F43] text-white text-xl font-semibold px-6 py-2 rounded-full shadow-md font-[jaro]'>
             Recommend
           </div>
