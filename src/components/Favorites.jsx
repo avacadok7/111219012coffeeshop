@@ -57,10 +57,9 @@ function Favorites() {
 
         {/* Grid */}
         <div className='grid sm:grid-cols-2 md:grid-cols-4 gap-2'>
-          {sortedData.map((item, index) => {
+          {sortedData.map((item) => {
             const content = (
               <div
-                key={index}
                 className="flex flex-col cursor-pointer items-center rounded-xl p-3 transition transform hover:scale-105 hover:shadow-xl"
               >
                 <img
@@ -72,12 +71,11 @@ function Favorites() {
               </div>
             );
 
-            return index === 0 ? (
-              <Link to={`/coffee-shop-details/${index}`} key={index}>
+            return (
+              <Link to={`/coffee-shop-details/${item.id}`} key={item.id}>
                 {content}
               </Link>
-            ) : (
-              <React.Fragment key={index}>{content}</React.Fragment>
+              
             );
           })}
         </div>
