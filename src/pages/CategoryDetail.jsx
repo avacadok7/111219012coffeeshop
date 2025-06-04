@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import NavBar from '../components/Navbar';
+//import NavBar from '../components/Navbar';
 import banner from '../assets/images/category-banner.png';
 import Favorites from '../components/Favorites';
 import Recommend from '../components/Recommend';
@@ -12,7 +12,7 @@ function CategoryDetail() {
 
   return (
    <>
-   <NavBar/>    
+      
    <div className ="relative w-full">
     <img
         src={banner}

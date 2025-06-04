@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NavBar from '../components/Navbar';
+//import NavBar from '../components/Navbar';
 import { useParams } from 'react-router-dom';
 import coffeeShopImg from '../assets/images/cafe1.png'; // Adjust path if needed
 import { FaStar } from 'react-icons/fa';
@@ -28,7 +28,7 @@ const CoffeeShopDetails = () => {
 
   return (
     <>
-      <NavBar />
+      
 
       <div className="flex w-full min-h-screen bg-white px-4 py-6 items-center">
         {/* Left Side - Image */}

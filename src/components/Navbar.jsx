@@ -8,7 +8,7 @@ const NavBar = () => {
   const [showLogin, setShowLogin] = useState(false);  
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 bg-[#714F43]/90 py-3 sm:py-0">
+    <div className="fixed top-0 left-0 w-full z-50 bg-[#714F43]/90 py-3 sm:py-2">
       <div className="mx-auto px-4 sm:px-12 max-w-screen-xl flex items-center justify-between">
         
         {/* Logo Section */}
