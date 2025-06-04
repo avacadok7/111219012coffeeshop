@@ -6,13 +6,12 @@ const CoffeeCard = ({ cafe }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(state => state.favorites.list);
   const isFavorite = favorites.some(item => item.id === cafe.id);
-
   const [showHeart, setShowHeart] = useState(false);
 
   const handleDoubleClick = () => {
     dispatch(toggleFavorite(cafe));
     setShowHeart(true);
-    setTimeout(() => setShowHeart(false), 800); // ❤️ animation timeout
+    setTimeout(() => setShowHeart(false), 800);
   };
 
   return (
