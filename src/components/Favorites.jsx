@@ -70,13 +70,15 @@ function Favorites() {
                 <p className="mt-2 text-black font-[jaro] text-lg font-semibold">{item.name}</p>
               </div>
             );
-
+          if (item.id === 1){
             return (
               <Link to={`/coffee-shop-details/${item.id}`} key={item.id}>
                 {content}
               </Link>
               
             );
+          }
+            return content;
           })}
         </div>
       </div>
