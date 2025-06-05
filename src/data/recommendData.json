@@ -5,7 +5,9 @@
       "alt": "Cafe 1",
       "name": "硫磺   台北 ｜東區 ",
       "lat": 23.0111,
-      "lng": 120.2001
+      "lng": 120.2001,
+      "location": "新北市板橋區文化路一段88號",
+    "hours": "10:00 - 20:00 (Closed on Wednesdays)"
     },
     {
       "id": 2,
@@ -13,7 +15,9 @@
       "alt": "Cafe 2",
       "name": "ハハ珈琲店    台北 ｜中山 ",
       "lat": 23.0111,
-      "lng": 120.3201
+      "lng": 120.3201,
+      "location": "台北市中山區民生東路123號",
+      "hours": "09:00 - 18:00 (Closed on Tuesdays)"
     },
     {
       "id": 3,
@@ -21,7 +25,9 @@
       "alt": "Cafe 3",
       "name": "CONGRATS CAFE  台北 ｜信義",
       "lat": 23.2211,
-      "lng": 121.2201
+      "lng": 121.2201,
+      "location": "台北市信義區松壽路100號",
+      "hours": "11:00 - 22:00 (Closed on Wednesdays)"   
     },
     {
       "id": 4,
@@ -29,15 +35,19 @@
       "alt": "Cafe 4",
       "name": "珘墨咖啡        台中 ｜北區",
       "lat": 24.1500,
-      "lng": 120.6500
-    },
+      "lng": 120.6500,
+      "location": "台中市北區文化路一段88號",
+      "hours": "10:00 - 20:00 (Closed on Thursdays)"  
+    },  
      {
     "id": 5,
     "image": "cafe5",
     "alt": "Cafe 5",
     "name": "窄门咖啡 台南 ｜中西",
     "lat": 23.0001,
-    "lng": 120.2001
+    "lng": 120.2002,
+    "location": "台南市中西區民族路二段88號",
+    "hours": "09:00 - 18:00 (Closed on Mondays)"
   },
   {
     "id": 6,
@@ -45,7 +55,9 @@
     "alt": "Cafe 6",
     "name": "上樓看看 台北 ｜信義",
     "lat": 25.0330,
-    "lng": 121.5654
+    "lng": 121.5654,
+    "location": "台北市信義區松壽路100號",
+    "hours": "11:00 - 22:00 (Closed on Wednesdays)"
   },
   {
     "id": 7,
@@ -53,7 +65,9 @@
     "alt": "Cafe 7",
     "name": "咖啡•梅 台北 ｜中正",
     "lat": 25.0423,
-    "lng": 121.5190
+    "lng": 121.5190,
+    "location": "台北市中正區仁愛路四段88號",
+    "hours": "10:00 - 20:00 (Closed on Thursdays)"
   },
   {
     "id": 8,
@@ -61,7 +75,9 @@
     "alt": "Cafe 8",
     "name": "隅咖啡 台北 ｜中正",
     "lat": 25.0418,
-    "lng": 121.5169
+    "lng": 121.5169,
+    "location": "台北市中正區仁愛路四段88號",
+    "hours": "10:00 - 20:00 (Closed on Thursdays)"
   }
   ]
 
