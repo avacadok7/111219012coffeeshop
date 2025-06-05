@@ -6,7 +6,6 @@ import cafe5 from '../assets/images/cafe5.jpg';
 import cafe6 from '../assets/images/cafe6.jpg';
 import cafe7 from '../assets/images/cafe7.jpg';
 import cafe8 from '../assets/images/cafe8.jpg';
-console.log("✅ resolveCafeData loaded");
 
 const rawData = [
   {

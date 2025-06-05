@@ -3,11 +3,16 @@ import cafe1 from '../assets/images/cafe1.png';
 import cafe2 from '../assets/images/cafe2.png';
 import cafe3 from '../assets/images/cafe3.png';
 import cafe4 from '../assets/images/cafe4.png';
+import cafe5 from '../assets/images/cafe5.jpg';
+import cafe6 from '../assets/images/cafe6.jpg';
+import cafe7 from '../assets/images/cafe7.jpg';
+import cafe8 from '../assets/images/cafe8.jpg';
 import favoriteData from '../data/favoriteData.json';
 import { Link } from 'react-router-dom';
 
+const imageMap = { cafe1, cafe2, cafe3, cafe4, cafe5, cafe6, cafe7, cafe8 };
+
 function Favorites() {
-  const imageMap = { cafe1, cafe2, cafe3, cafe4 };
   const [sortedData, setSortedData] = useState(favoriteData);
 
   const handleNearMe = () => {

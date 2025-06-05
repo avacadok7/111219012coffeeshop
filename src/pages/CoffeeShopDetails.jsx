@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import Footer from '../components/Footer';
 import CoffeeCard from '../components/CoffeeCard';
-import recommendData from '../data/resolveCafeData';
+import recommendData from '../data/resolveCafeData.js';
 
 const reviewCategories = ['Study', 'Talk', 'Meals', 'Coffee', 'Dessert', 'Animals'];
 
