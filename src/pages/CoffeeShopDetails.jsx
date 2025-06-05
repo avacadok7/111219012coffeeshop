@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import coffeeShopImg from '../assets/images/cafe1.png';
 import { FaStar } from 'react-icons/fa';
 import Footer from '../components/Footer';
 import CoffeeCard from '../components/CoffeeCard';
+import recommendData from '../data/recommendData'; // ✅ import your full data array
 
 const reviewCategories = ['Study', 'Talk', 'Meals', 'Coffee', 'Dessert', 'Animals'];
 
 const CoffeeShopDetails = () => {
   const { id } = useParams();
+  const cafe = recommendData.find(c => String(c.id) === id); // Make sure to match as strings
 
   const [showModal, setShowModal] = useState(false);
   const [ratings, setRatings] = useState({
@@ -26,45 +27,26 @@ const CoffeeShopDetails = () => {
     setShowModal(false);
   };
 
-  // ✅ Favorite logic input
-  const currentCafe = {
-    id: id,
-    name: "窄门咖啡",
-    image: coffeeShopImg,
-  };
+  if (!cafe) {
+    return <p className="text-center text-gray-500 mt-10">Coffee shop not found.</p>;
+  }
 
   return (
     <>
       <div className="flex w-full min-h-screen bg-white px-4 py-6 items-center">
         {/* Left Side - Image & Favorite */}
         <div className="w-1/3 p-6 py-10">
-          {/* ✅ Use CoffeeCard to enable Redux + heart animation */}
-          <CoffeeCard cafe={currentCafe} />
+          <CoffeeCard cafe={cafe} />
         </div>
 
         {/* Right Side - Details */}
         <div className="w-2/3 p-4">
-          <h1 className="text-3xl font-bold text-[#714F43] font-[jaro] mb-4">
-            窄门咖啡 台南 ｜中西
-          </h1>
-          <p className="text-gray-700 text-lg font-[jaro]">
-            LOCATION: 台北市中山區雙城街47-1號<br />
-            OPENING HOURS: 10:00 - 18:00 (Closed on Mondays)
-          </p>
-        </div>
+          <h1 className="text-3xl font-bold text-[#714F43] font-[jaro] mb-4">{cafe.name}</h1>
+          <p className="text-gray-700 text-lg font-[jaro] mb-1">LOCATION: {cafe.location}</p>
+          <p className="text-gray-700 text-lg font-[jaro]">OPENING HOURS: {cafe.hours}</p>
 
-        {/* Add Review Button */}
-        <div className="absolute bottom-4 right-4">
-          <div className="mt-6 md:mt-4 md:relative md:block hidden">
-            <button
-              onClick={() => setShowModal(true)}
-              className="bg-[#714F43] text-white px-6 py-2 rounded-full hover:bg-[#5c3d33] transition font-[jaro]"
-            >
-              Add Review
-            </button>
-          </div>
-
-          <div className="fixed bottom-4 right-4 md:hidden z-50">
+          {/* ✅ Review Button now sits under the text */}
+          <div className="mt-6">
             <button
               onClick={() => setShowModal(true)}
               className="bg-[#714F43] text-white px-6 py-2 rounded-full hover:bg-[#5c3d33] transition font-[jaro]"
@@ -85,11 +67,9 @@ const CoffeeShopDetails = () => {
             >
               ✕
             </button>
-
             <h2 className="text-2xl font-bold text-[#714F43] mb-4 font-[jaro] text-center">
               Rate This Coffee Shop
             </h2>
-
             <div className="space-y-4">
               {reviewCategories.map((category) => (
                 <div key={category} className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
@@ -107,7 +87,6 @@ const CoffeeShopDetails = () => {
                 </div>
               ))}
             </div>
-
             <div className="mt-6 text-center">
               <button
                 onClick={handleSubmitReview}
