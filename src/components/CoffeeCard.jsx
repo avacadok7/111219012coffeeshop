@@ -25,21 +25,12 @@ const CoffeeCard = ({ cafe }) => {
         className="w-full rounded-lg transition-transform duration-300 group-hover:scale-105"
       />
 
-      {/* Persistent heart icon */}
-      {isFavorite && (
-        <div className="absolute top-2 right-2 rounded-full p-2 shadow">
-          <span className="text-red-500 text-3xl">❤️</span>
-        </div>
-      )}
-
       {/* Heart pop animation */}
       {showHeart && (
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-red-500 text-4xl animate-ping">❤️</span>
         </div>
       )}
-
-      
     </div>
   );
 };

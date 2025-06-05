@@ -2,10 +2,28 @@ import React, { useState } from "react";
 import Logo from "../assets/images/logo.png";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { clearFavorites } from '../features/favorites/favoritesSlice';
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);  
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    // Add your logout logic here
+    // For example, clearing user data, redirecting to login page, etc.
+    // dispatch(clearUserData());
+    // history.push('/login');
+    dispatch(clearFavorites());
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(clearFavorites());
+    setShowLogin(false); // Optionally close the modal
+    // ...add your login logic here if needed
+  };
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 bg-[#714F43]/90 py-3 sm:py-2">
@@ -78,7 +96,7 @@ const NavBar = () => {
               <AiOutlineClose size={20} />
             </button>
             <h2 className="text-xl font-bold text-[#714F43] mb-4">Login</h2>
-            <form className="flex flex-col gap-4">
+            <form className="flex flex-col gap-4" onSubmit={handleLogin}>
               <input
                 type="email"
                 placeholder="Email"

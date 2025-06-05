@@ -1,24 +1,35 @@
+// src/features/favorites/favoritesSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  list: [],
+const loadFavorites = () => {
+  try {
+    const data = localStorage.getItem('favorites');
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
 };
 
 const favoritesSlice = createSlice({
   name: 'favorites',
-  initialState,
+  initialState: {
+    list: loadFavorites(),
+  },
   reducers: {
     toggleFavorite: (state, action) => {
-      const index = state.list.findIndex(item => item.id === action.payload.id);
-      if (index >= 0) {
-        state.list.splice(index, 1); // remove
+      const exists = state.list.some(item => item.id === action.payload.id);
+      if (exists) {
+        state.list = state.list.filter(item => item.id !== action.payload.id);
       } else {
-        state.list.push(action.payload); // add
+        state.list.push(action.payload);
       }
+      // Save to localStorage
+      localStorage.setItem('favorites', JSON.stringify(state.list));
     },
     clearFavorites: (state) => {
       state.list = [];
-    },
+      localStorage.removeItem('favorites');
+    }
   },
 });
 

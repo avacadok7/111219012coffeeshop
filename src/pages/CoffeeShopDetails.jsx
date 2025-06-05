@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaHeart } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 import Footer from '../components/Footer';
 import CoffeeCard from '../components/CoffeeCard';
 import recommendData from '../data/resolveCafeData.js';
@@ -16,6 +17,9 @@ const CoffeeShopDetails = () => {
     Study: 0, Talk: 0, Meals: 0, Coffee: 0, Dessert: 0, Animals: 0,
   });
   const [submittedReviews, setSubmittedReviews] = useState([]);
+
+  const favorites = useSelector((state) => state.favorites.list);
+  const isFavorite = favorites.some((item) => item.id === cafe.id);
 
   const handleRating = (category, value) => {
     setRatings(prev => ({ ...prev, [category]: value }));
@@ -41,7 +45,10 @@ const CoffeeShopDetails = () => {
 
         {/* Right Side - Details */}
         <div className="w-2/3 p-4">
-          <h1 className="text-3xl font-bold text-[#714F43] font-[jaro] mb-4">{cafe.name}</h1>
+          <h1 className="text-3xl font-bold text-[#714F43] font-[jaro] mb-4 flex items-center gap-2">
+            {cafe.name}
+            {isFavorite && <FaHeart className="text-red-500 text-xl" />}
+          </h1>
           <p className="text-gray-700 text-lg font-[jaro] mb-1">LOCATION: {cafe.location}</p>
           <p className="text-gray-700 text-lg font-[jaro]">OPENING HOURS: {cafe.hours}</p>
 
@@ -63,8 +70,7 @@ const CoffeeShopDetails = () => {
           <div className="bg-white w-full max-w-md sm:max-w-lg rounded-xl shadow-lg p-6 relative overflow-y-auto max-h-[90vh]">
             <button
               onClick={() => setShowModal(false)}
-              className="absolute top-3 right-3 text-gray-500 hover:text-red-500"
-            >
+              >
               ✕
             </button>
             <h2 className="text-2xl font-bold text-[#714F43] mb-4 font-[jaro] text-center">
