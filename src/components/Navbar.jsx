@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Fuse from "fuse.js";
 import recommendData from "../data/resolveCafeData.js";
 import Logo from "../assets/images/logo.png";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { clearFavorites } from '../features/favorites/favoritesSlice';
 
@@ -116,7 +115,9 @@ const NavBar = () => {
           <li className="p-4 hover:bg-gray-100 cursor-pointer">Categories</li>
           <li className="p-4 hover:bg-gray-100 cursor-pointer">Scroll</li>
           <li className="p-4 hover:bg-gray-100 cursor-pointer">Location</li>
-          <li className="p-4 hover:bg-gray-100 cursor-pointer">My Reviews</li>
+          <li className="p-4 hover:bg-gray-100 cursor-pointer">
+            <Link to="/my-reviews" onClick={() => setMenuOpen(false)}>My Reviews</Link>
+          </li>
         </ul>
          {/* Login Button inside menu */}
          <div className="px-4 mt-6">

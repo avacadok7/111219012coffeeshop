@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import CategoryDetail from './pages/CategoryDetail';
 import CoffeeShopDetails from './pages/CoffeeShopDetails';
 import ScrollToTop from './components/ScrollToTop';
+import MyReviews from './pages/MyReviews';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/category/:id" element={<CategoryDetail />} />
         <Route path="/coffee-shop-details/:id" element={<CoffeeShopDetails />} />
+        <Route path="/my-reviews" element={<MyReviews />} />
       </Routes>
     </>
   );

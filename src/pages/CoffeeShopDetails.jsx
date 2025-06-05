@@ -27,6 +27,14 @@ const CoffeeShopDetails = () => {
 
   const handleSubmitReview = () => {
     setSubmittedReviews(prev => [...prev, { ...ratings }]);
+    // Save to localStorage for MyReviews page
+    const myReviews = JSON.parse(localStorage.getItem('myReviews')) || [];
+    myReviews.push({
+      cafeId: cafe.id,
+      cafeName: cafe.name,
+      ratings: { ...ratings }
+    });
+    localStorage.setItem('myReviews', JSON.stringify(myReviews));
     setRatings({ Study: 0, Talk: 0, Meals: 0, Coffee: 0, Dessert: 0, Animals: 0 });
     setShowModal(false);
   };
@@ -36,7 +44,7 @@ const CoffeeShopDetails = () => {
   }
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <div className="flex w-full min-h-screen bg-white px-4 py-6 items-center">
         {/* Left Side - Image & Favorite */}
         <div className="w-1/3 p-6 py-10">
@@ -134,7 +142,7 @@ const CoffeeShopDetails = () => {
       )}
 
       <Footer />
-    </>
+    </div>
   );
 };
 

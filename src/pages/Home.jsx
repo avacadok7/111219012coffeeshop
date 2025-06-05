@@ -11,7 +11,7 @@ import favoriteData from '../data/favoriteData';
 
 function Home() {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <div className="pt-[80px] sm:pt-[80px] px-4">
         <Recommend />
         <Favorites />
@@ -20,9 +20,9 @@ function Home() {
         {/* ✅ Render CoffeeCard for each cafe */}
        
 
-        <Footer />
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }
 
