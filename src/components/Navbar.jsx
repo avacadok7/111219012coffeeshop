@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Fuse from "fuse.js";
+import recommendData from "../data/resolveCafeData.js";
 import Logo from "../assets/images/logo.png";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Link } from 'react-router-dom';
@@ -8,7 +11,16 @@ import { clearFavorites } from '../features/favorites/favoritesSlice';
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);  
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // Set up Fuse.js
+  const fuse = new Fuse(recommendData, {
+    keys: ["name"],
+    threshold: 0.4, // adjust for more/less blurry
+  });
 
   const handleLogout = () => {
     // Add your logout logic here
@@ -25,6 +37,24 @@ const NavBar = () => {
     // ...add your login logic here if needed
   };
 
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (!searchTerm.trim()) return;
+    setLoading(true);
+    // Simulate async search (Fuse is synchronous, but you can use setTimeout for effect)
+    setTimeout(() => {
+      const results = fuse.search(searchTerm);
+      setLoading(false);
+      if (results.length > 0) {
+        const cafeId = results[0].item.id;
+        setSearchTerm("");
+        navigate(`/coffee-shop-details/${cafeId}`);
+      } else {
+        alert("No matching cafe found!");
+      }
+    }, 500); // 500ms for demo, adjust as needed
+  };
+
   return (
     <div className="fixed top-0 left-0 w-full z-50 bg-[#714F43]/90 py-3 sm:py-2">
       <div className="mx-auto px-4 sm:px-12 max-w-screen-xl flex items-center justify-between">
@@ -39,13 +69,23 @@ const NavBar = () => {
         <div className="flex items-center gap-4 relative">
           
           {/* Search Bar */}
-          <div className="group">
+          <form onSubmit={handleSearch} className="relative">
             <input 
               type="text" 
               placeholder="search"
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
               className="w-[200px] sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-full border border-gray-300 px-2 py-1 focus:outline-none focus:border-[#714F43]"  
             />
-          </div>
+            {loading && (
+              <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                <svg className="animate-spin h-5 w-5 text-[#714F43]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+              </div>
+            )}
+          </form>
 
           {/* Menu Icon */}
           <div
