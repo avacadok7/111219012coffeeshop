@@ -27,8 +27,8 @@ const CoffeeCard = ({ cafe }) => {
 
       {/* Persistent heart icon */}
       {isFavorite && (
-        <div className="absolute top-2 right-2 bg-white rounded-full p-1 shadow">
-          <span className="text-red-500 text-xl">❤️</span>
+        <div className="absolute top-2 right-2 rounded-full p-2 shadow">
+          <span className="text-red-500 text-3xl">❤️</span>
         </div>
       )}
 
@@ -39,7 +39,7 @@ const CoffeeCard = ({ cafe }) => {
         </div>
       )}
 
-      <p className="mt-2 text-center font-semibold">{cafe.name}</p>
+      
     </div>
   );
 };

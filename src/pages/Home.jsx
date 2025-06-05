@@ -18,11 +18,7 @@ function Home() {
         <Categories />
 
         {/* ✅ Render CoffeeCard for each cafe */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 my-6">
-          {favoriteData.map((cafe) => (
-            <CoffeeCard key={cafe.id} cafe={cafe} />
-          ))}
-        </div>
+       
 
         <Footer />
       </div>

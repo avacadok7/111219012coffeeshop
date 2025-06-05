@@ -26,7 +26,7 @@ const CoffeeShopDetails = () => {
     setShowModal(false);
   };
 
-  // ✅ For favoriting
+  // ✅ Favorite logic input
   const currentCafe = {
     id: id,
     name: "窄门咖啡",
@@ -36,13 +36,10 @@ const CoffeeShopDetails = () => {
   return (
     <>
       <div className="flex w-full min-h-screen bg-white px-4 py-6 items-center">
-        {/* Left Side - Image */}
-        <div className="w-1/3 h-1/2 p-6 py-10">
-          <img
-            src={coffeeShopImg}
-            alt="Coffee Shop"
-            className="w-full h-full object-cover rounded-lg shadow-md"
-          />
+        {/* Left Side - Image & Favorite */}
+        <div className="w-1/3 p-6 py-10">
+          {/* ✅ Use CoffeeCard to enable Redux + heart animation */}
+          <CoffeeCard cafe={currentCafe} />
         </div>
 
         {/* Right Side - Details */}
@@ -54,11 +51,6 @@ const CoffeeShopDetails = () => {
             LOCATION: 台北市中山區雙城街47-1號<br />
             OPENING HOURS: 10:00 - 18:00 (Closed on Mondays)
           </p>
-        </div>
-
-        {/* Favorite Toggle (❤️) */}
-        <div className="absolute top-4 right-4">
-          <CoffeeCard cafe={currentCafe} />
         </div>
 
         {/* Add Review Button */}
@@ -128,6 +120,7 @@ const CoffeeShopDetails = () => {
         </div>
       )}
 
+      {/* Submitted Reviews Section */}
       {submittedReviews.length > 0 && (
         <div className="w-full px-6 mt-10">
           <h2 className="text-xl font-bold font-[jaro] text-[#714F43] mb-4">User Reviews</h2>
