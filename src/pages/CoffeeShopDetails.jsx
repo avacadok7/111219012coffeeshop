@@ -10,7 +10,7 @@ const reviewCategories = ['Study', 'Talk', 'Meals', 'Coffee', 'Dessert', 'Animal
 
 const CoffeeShopDetails = () => {
   const { id } = useParams();
-  const cafe = recommendData.find(c => String(c.id) === id); // Make sure to match as strings
+  const cafe = recommendData.find(c => String(c.id) === id);
 
   const [showModal, setShowModal] = useState(false);
   const [ratings, setRatings] = useState({
@@ -52,7 +52,7 @@ const CoffeeShopDetails = () => {
           <p className="text-gray-700 text-lg font-[jaro] mb-1">LOCATION: {cafe.location}</p>
           <p className="text-gray-700 text-lg font-[jaro]">OPENING HOURS: {cafe.hours}</p>
 
-          {/* ✅ Review Button now sits under the text */}
+          {/* Review Button */}
           <div className="mt-6">
             <button
               onClick={() => setShowModal(true)}

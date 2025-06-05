@@ -17,8 +17,8 @@
     "bootstrap": "^5.3.6",
     "firebase": "^11.9.0",
     "fuse.js": "^7.1.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "18",
+    "react-dom": "18",
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.23.0",
@@ -41,5 +41,9 @@
   },
   "main": "index.js",
   "repository": "https://github.com/avacadok7/111219012coffeeshop.git",
-  "license": "MIT"
+  "license": "MIT",
+  "ratings": [
+    { "Study": 4, "Talk": 5 },
+    { "Study": 3, "Talk": 4 }
+  ]
 }
