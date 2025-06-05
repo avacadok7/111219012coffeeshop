@@ -55,7 +55,7 @@ function Categories() {
                 <img
                 src={imageMap[item.image]}
                 alt={item.alt}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-xl"
                 />
                 <div className="absolute inset-0  bg-opacity-40 flex items-center justify-center">
                 <p className="text-white text-xl font-bold font-[jaro]">{item.name}</p>

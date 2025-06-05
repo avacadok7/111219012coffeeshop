@@ -70,7 +70,8 @@ const CoffeeShopDetails = () => {
           <div className="bg-white w-full max-w-md sm:max-w-lg rounded-xl shadow-lg p-6 relative overflow-y-auto max-h-[90vh]">
             <button
               onClick={() => setShowModal(false)}
-              >
+              className="absolute top-3 right-3 text-gray-500 hover:text-red-500"
+            >
               ✕
             </button>
             <h2 className="text-2xl font-bold text-[#714F43] mb-4 font-[jaro] text-center">
