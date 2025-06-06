@@ -1,46 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Fuse from "fuse.js";
 import recommendData from "../data/resolveCafeData.js";
 import Logo from "../assets/images/logo.png";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { useDispatch } from 'react-redux';
-import { clearFavorites } from '../features/favorites/favoritesSlice';
+import { auth, db } from "../../firebaseConfig";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);  
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+  const [user, setUser] = useState(null);
+  const [nickname, setNickname] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
 
   // Set up Fuse.js
   const fuse = new Fuse(recommendData, {
     keys: ["name"],
-    threshold: 0.4, // adjust for more/less blurry
+    threshold: 0.4,
   });
 
-  const handleLogout = () => {
-    // Add your logout logic here
-    // For example, clearing user data, redirecting to login page, etc.
-    // dispatch(clearUserData());
-    // history.push('/login');
-    dispatch(clearFavorites());
-  };
+  // Listen for Firebase Auth state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setUser(user);
+      if (user) {
+        // Fetch nickname from Firestore
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setNickname(docSnap.data().nickname || user.email);
+        } else {
+          setNickname(user.email);
+        }
+      } else {
+        setNickname("");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    dispatch(clearFavorites());
-    setShowLogin(false); // Optionally close the modal
-    // ...add your login logic here if needed
+  const handleLogout = async () => {
+    await signOut(auth);
+    setShowDropdown(false);
+    setMenuOpen(false);
+    navigate("/");
   };
 
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!searchTerm.trim()) return;
     setLoading(true);
-    // Simulate async search (Fuse is synchronous, but you can use setTimeout for effect)
     setTimeout(() => {
       const results = fuse.search(searchTerm);
       setLoading(false);
@@ -51,13 +64,12 @@ const NavBar = () => {
       } else {
         alert("No matching cafe found!");
       }
-    }, 500); // 500ms for demo, adjust as needed
+    }, 500);
   };
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 bg-[#714F43]/90 py-3 sm:py-2">
       <div className="mx-auto px-4 sm:px-12 max-w-screen-xl flex items-center justify-between">
-        
         {/* Logo Section */}
         <Link to="/" className="font-[jaro] font-bold text-2xl sm:text-3xl flex items-center gap-2">
           <img src={Logo} alt="Logo" className="w-10 py-1 sm:py-1" />
@@ -66,7 +78,6 @@ const NavBar = () => {
 
         {/* Right Section */}
         <div className="flex items-center gap-4 relative">
-          
           {/* Search Bar */}
           <form onSubmit={handleSearch} className="relative">
             <input 
@@ -85,7 +96,34 @@ const NavBar = () => {
               </div>
             )}
           </form>
-
+          {/* User/Nickname or Login Button */}
+          {user ? (
+            <div className="relative">
+              <button
+                className="font-[jaro] bg-[#714F43] text-white font-semibold px-6 py-2 rounded-full hover:bg-[#5c3d33] transition"
+                onClick={() => setShowDropdown((prev) => !prev)}
+              >
+                {nickname || user.email}
+              </button>
+              {showDropdown && (
+                <div className="absolute right-0 mt-2 bg-white border rounded shadow-lg z-50">
+                  <button
+                    className="block w-full text-left px-4 py-2 text-[#714F43] hover:bg-gray-100"
+                    onClick={handleLogout}
+                  >
+                    Log out
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="font-[jaro] bg-[#714F43] text-white font-semibold px-6 py-2 rounded-full hover:bg-[#5c3d33] transition"
+            >
+              Login
+            </Link>
+          )}
           {/* Menu Icon */}
           <div
             onClick={() => setMenuOpen(true)}
@@ -119,46 +157,10 @@ const NavBar = () => {
             <Link to="/my-reviews" onClick={() => setMenuOpen(false)}>My Reviews</Link>
           </li>
         </ul>
-         {/* Login Button inside menu */}
-         <div className="px-4 mt-6">
-          <button onClick={() => setShowLogin(true)} className="font-[jaro] w-0.8 bg-[#714F43] text-white font-semibold px-6 py-3 rounded-full hover:bg-[#5c3d33] transition">
-            Login
-          </button>
-          </div>
-      </div>
-        {/* Login Modal */}
-      {showLogin && (
-        <div className="font-[jaro] fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white w-[90%] max-w-sm rounded-xl shadow-lg p-6 relative">
-            <button
-              onClick={() => setShowLogin(false)}
-              className="absolute top-3 right-3 text-gray-600 hover:text-red-500"
-            >
-              <AiOutlineClose size={20} />
-            </button>
-            <h2 className="text-xl font-bold text-[#714F43] mb-4">Login</h2>
-            <form className="flex flex-col gap-4" onSubmit={handleLogin}>
-              <input
-                type="email"
-                placeholder="Email"
-                className="border rounded-md px-4 py-2 focus:outline-none focus:border-[#714F43]"
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                className="border rounded-md px-4 py-2 focus:outline-none focus:border-[#714F43]"
-              />
-              <button
-                type="submit"
-                className="bg-[#714F43] text-white py-2 rounded-md hover:bg-[#5c3d33] transition"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
+        <div className="px-4 mt-6">
+          {/* No Login or Log out button in the side menu */}
         </div>
-      )}
-
+      </div>
     </div>
   );
 };
