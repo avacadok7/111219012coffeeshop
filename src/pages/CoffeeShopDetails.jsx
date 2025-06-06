@@ -102,11 +102,16 @@ const CoffeeShopDetails = () => {
     }
   };
 
-  // Calculate averages and counts
+  // Calculate averages and counts for each category from all user reviews
   const averages = {};
   const counts = {};
   reviewCategories.forEach(category => {
-    const values = submittedReviews.map(r => r.ratings[category] || 0).filter(v => v > 0);
+    // Gather all ratings for this category from all reviews
+    const values = submittedReviews
+      .map(r => r.ratings[category] || 0)
+      .filter(v => v > 0); // Only count ratings > 0
+
+    // Calculate average and count
     averages[category] = values.length
       ? (values.reduce((a, b) => a + b, 0) / values.length).toFixed(2)
       : '-';
