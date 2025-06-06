@@ -55,6 +55,18 @@ function MyReviews() {
     await setDoc(doc(db, "reviews", reviewDocId), review);
 
     setEditingIdx(null);
+
+    // 🔥 Fetch latest reviews from Firestore so UI updates
+    const q = query(
+      collection(db, "reviews"),
+      where("userId", "==", user.uid)
+    );
+    const querySnapshot = await getDocs(q);
+    const userReviews = [];
+    querySnapshot.forEach((doc) => {
+      userReviews.push(doc.data());
+    });
+    setReviews(userReviews);
   };
 
   const handleCancel = () => {
@@ -75,10 +87,12 @@ function MyReviews() {
             {reviews.map((review, idx) => (
               <div
                 key={idx}
-                className="bg-[#F5F5F5] rounded-lg p-4 shadow-md cursor-pointer hover:shadow-lg transition"
-                onClick={() => navigate(`/coffee-shop-details/${review.cafeId}`)}
+                className="bg-[#F5F5F5] rounded-lg p-4 shadow-md hover:shadow-lg transition"
               >
-                <h2 className="font-bold text-lg text-[#714F43] mb-2 underline">
+                <h2
+                  className="font-bold text-lg text-[#714F43] mb-2 underline cursor-pointer"
+                  onClick={() => navigate(`/coffee-shop-details/${review.cafeId}`)}
+                >
                   {review.cafeName}
                 </h2>
                 {Object.entries(review.ratings).map(([category, value]) => (

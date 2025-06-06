@@ -85,7 +85,7 @@ const CoffeeShopDetails = () => {
     const reviewData = {
       cafeId: cafe.id,
       cafeName: cafe.name,
-      ratings: { ...ratings },
+      ratings: { ...ratings }, // <-- This stores the ratings object
       userId: user.uid,
       userEmail: user.email,
       timestamp: Date.now(),
@@ -102,13 +102,15 @@ const CoffeeShopDetails = () => {
     }
   };
 
-  // Calculate averages
+  // Calculate averages and counts
   const averages = {};
+  const counts = {};
   reviewCategories.forEach(category => {
     const values = submittedReviews.map(r => r.ratings[category] || 0).filter(v => v > 0);
     averages[category] = values.length
       ? (values.reduce((a, b) => a + b, 0) / values.length).toFixed(2)
       : '-';
+    counts[category] = values.length;
   });
 
   if (!cafe) {
@@ -141,6 +143,7 @@ const CoffeeShopDetails = () => {
                   <span className="font-[jaro] text-[#714F43]">{category}:</span>
                   <span className="font-bold">{averages[category]}</span>
                   <FaStar className="text-yellow-400" />
+                  <span className="text-xs text-gray-500 ml-1">({counts[category]})</span>
                 </div>
               ))}
             </div>
