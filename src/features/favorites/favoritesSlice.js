@@ -1,19 +1,27 @@
 // src/features/favorites/favoritesSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { auth, db } from '../../../firebaseConfig';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
-const loadFavorites = () => {
-  try {
-    const data = localStorage.getItem('favorites');
-    return data ? JSON.parse(data) : [];
-  } catch {
+// Load favorites from Firestore
+export const loadFavoritesFromFirestore = createAsyncThunk(
+  'favorites/loadFromFirestore',
+  async (_, { rejectWithValue }) => {
+    const user = auth.currentUser;
+    if (!user) return [];
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+    if (userSnap.exists() && userSnap.data().favorites) {
+      return userSnap.data().favorites;
+    }
     return [];
   }
-};
+);
 
 const favoritesSlice = createSlice({
   name: 'favorites',
   initialState: {
-    list: loadFavorites(),
+    list: [],
   },
   reducers: {
     toggleFavorite: (state, action) => {
@@ -23,14 +31,27 @@ const favoritesSlice = createSlice({
       } else {
         state.list.push(action.payload);
       }
-      // Save to localStorage
-      localStorage.setItem('favorites', JSON.stringify(state.list));
+      // Save to Firestore
+      const user = auth.currentUser;
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        setDoc(userRef, { favorites: state.list }, { merge: true });
+      }
     },
     clearFavorites: (state) => {
       state.list = [];
-      localStorage.removeItem('favorites');
+      const user = auth.currentUser;
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        setDoc(userRef, { favorites: [] }, { merge: true });
+      }
     }
   },
+  extraReducers: (builder) => {
+    builder.addCase(loadFavoritesFromFirestore.fulfilled, (state, action) => {
+      state.list = action.payload;
+    });
+  }
 });
 
 export const { toggleFavorite, clearFavorites } = favoritesSlice.actions;

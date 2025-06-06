@@ -7,6 +7,8 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { auth, db } from "../../firebaseConfig";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
+import { useDispatch } from 'react-redux';
+import { loadFavoritesFromFirestore, clearFavorites } from '../features/favorites/favoritesSlice';
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,6 +18,7 @@ const NavBar = () => {
   const [nickname, setNickname] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Set up Fuse.js
   const fuse = new Fuse(recommendData, {
@@ -42,6 +45,17 @@ const NavBar = () => {
     });
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        dispatch(loadFavoritesFromFirestore());
+      } else {
+        dispatch(clearFavorites());
+      }
+    });
+    return () => unsubscribe();
+  }, [dispatch]);
 
   const handleLogout = async () => {
     await signOut(auth);
