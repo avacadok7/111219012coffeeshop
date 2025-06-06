@@ -56,7 +56,7 @@ const CoffeeShopDetails = () => {
 
   // Call this in useEffect when cafe/user changes:
   useEffect(() => {
-    if (cafe && user) {
+    if (cafe) {
       loadReviewsFromFirestore();
     }
     // eslint-disable-next-line
