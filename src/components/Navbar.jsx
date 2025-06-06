@@ -120,9 +120,9 @@ const NavBar = () => {
                 {nickname || user.email}
               </button>
               {showDropdown && (
-                <div className="absolute right-0 mt-2 bg-white border rounded shadow-lg z-50">
+                <div className="absolute right-0 mt-2 bg-white border rounded shadow-lg z-50 flex flex-col">
                   <button
-                    className="block w-full text-left px-4 py-2 text-[#714F43] hover:bg-gray-100"
+                    className="block w-full text-left px-4 py-2 text-[#714F43] hover:bg-gray-100 whitespace-nowrap"
                     onClick={handleLogout}
                   >
                     Log out
