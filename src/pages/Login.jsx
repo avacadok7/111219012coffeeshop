@@ -19,11 +19,13 @@ function Login({ onSuccess }) {
       navigate("/");
     } catch (err) {
       if (err.code === "auth/user-not-found") {
-        setError("Email not registered. Please register first.");
+        setError("Account not found. Please register first.");
       } else if (err.code === "auth/wrong-password") {
         setError("Incorrect password. Please try again.");
+      } else if (err.code === "auth/invalid-email") {
+        setError("Invalid email format.");
       } else {
-        setError(err.message);
+        setError("Account not found. Please register first.");
       }
     }
   };
